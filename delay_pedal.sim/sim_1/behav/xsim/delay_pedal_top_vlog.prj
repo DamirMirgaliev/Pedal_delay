@@ -1,0 +1,9 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../delay_pedal.ip_user_files/ipstatic/hdl" \
+"../../../../delay_pedal.gen/sources_1/ip/fifo_delay_axis/sim/fifo_delay_axis.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

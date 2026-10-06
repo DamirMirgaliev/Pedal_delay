@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Mon Oct  5 04:43:17 2026
+# Process ID: 19200
+# Current directory: D:/delay_pedal/delay_pedal/delay_pedal.runs/fifo_delay_axis_synth_1
+# Command line: vivado.exe -log fifo_delay_axis.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source fifo_delay_axis.tcl
+# Log file: D:/delay_pedal/delay_pedal/delay_pedal.runs/fifo_delay_axis_synth_1/fifo_delay_axis.vds
+# Journal file: D:/delay_pedal/delay_pedal/delay_pedal.runs/fifo_delay_axis_synth_1\vivado.jou
+# Running On: DESKTOP-CVLIU8H, OS: Windows, CPU Frequency: 2904 MHz, CPU Physical cores: 4, Host memory: 34234 MB
+#-----------------------------------------------------------
+source fifo_delay_axis.tcl -notrace

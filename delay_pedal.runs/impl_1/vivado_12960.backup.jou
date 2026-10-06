@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Tue Oct  6 22:23:19 2026
+# Process ID: 12960
+# Current directory: D:/delay_pedal/delay_pedal/delay_pedal.runs/impl_1
+# Command line: vivado.exe -log delay_pedal_top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source delay_pedal_top.tcl -notrace
+# Log file: D:/delay_pedal/delay_pedal/delay_pedal.runs/impl_1/delay_pedal_top.vdi
+# Journal file: D:/delay_pedal/delay_pedal/delay_pedal.runs/impl_1\vivado.jou
+# Running On: DESKTOP-CVLIU8H, OS: Windows, CPU Frequency: 2904 MHz, CPU Physical cores: 4, Host memory: 34234 MB
+#-----------------------------------------------------------
+source delay_pedal_top.tcl -notrace

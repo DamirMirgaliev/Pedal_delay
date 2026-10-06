@@ -1,0 +1,7 @@
+Running: xsim.dir/delay_pedal_top_behav/xsimk.exe -simmode gui -wdb delay_pedal_top_behav.wdb -simrunnum 0 -socket 58008
+Design successfully loaded
+Design Loading Memory Usage: 10888 KB (Peak: 10888 KB)
+Design Loading CPU Usage: 77 ms
+Simulation completed
+Simulation Memory Usage: 14156 KB (Peak: 14156 KB)
+Simulation CPU Usage: 108 ms

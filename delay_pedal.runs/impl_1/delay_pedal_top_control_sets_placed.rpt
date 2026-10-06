@@ -1,0 +1,146 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.1 (win64) Build 3526262 Mon Apr 18 15:48:16 MDT 2022
+| Date         : Tue Oct  6 22:24:23 2026
+| Host         : DESKTOP-CVLIU8H running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file delay_pedal_top_control_sets_placed.rpt
+| Design       : delay_pedal_top
+| Device       : xc7z020
+--------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    68 |
+|    Minimum number of control sets                        |    68 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   172 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    68 |
+| >= 0 to < 4        |     8 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     4 |
+| >= 8 to < 10       |     3 |
+| >= 10 to < 12      |     3 |
+| >= 12 to < 14      |     1 |
+| >= 14 to < 16      |     1 |
+| >= 16              |    46 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             510 |          154 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              65 |           31 |
+| Yes          | No                    | No                     |             725 |          228 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             464 |          129 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|            Clock Signal            |                                                              Enable Signal                                                             |                                               Set/Reset Signal                                               | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_cnt                                           |                1 |              1 |         1.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_cnt                                           |                1 |              1 |         1.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_cnt                                           |                1 |              1 |         1.00 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/i2c_sda_t_i_1_n_0                                                                   |                                                                                                              |                1 |              1 |         1.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_cnt                                           |                1 |              1 |         1.00 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/i2c_scl_i_1_n_0                                                                     |                                                                                                              |                1 |              1 |         1.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_r/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/rst_i       |                2 |              3 |         1.50 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_l/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/rst_i       |                2 |              3 |         1.50 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/i2c_bits_left[3]_i_1_n_0                                                            |                                                                                                              |                2 |              4 |         2.00 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/state[3]_i_1_n_0                                                                    |                                                                                                              |                2 |              4 |         2.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_cntrl_coef_addr/ADDR[6] |                3 |              6 |         2.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_cntrl_coef_addr/ADDR[6] |                3 |              6 |         2.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_l/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/Q[0]        |                4 |              7 |         1.75 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_r/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/Q[0]        |                3 |              7 |         2.33 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/bitcount[7]_i_1_n_0                                                                 |                                                                                                              |                3 |              8 |         2.67 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2s_data_interface/i2s_lr_last_i_1_n_0                                                            | i_audio/Inst_adau1761_izedboard/Inst_i2s_data_interface/sr_out[39]_i_1_n_0                                   |                7 |              8 |         1.14 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/i2c_data[8]_i_1_n_0                                                                 |                                                                                                              |                3 |              9 |         3.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_cntrl_coef_addr/ADDR[6] |                4 |             10 |         2.50 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_cntrl_coef_addr/ADDR[6] |                4 |             10 |         2.50 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/pcnext[9]_i_1_n_0                                                                   |                                                                                                              |                3 |             10 |         3.33 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        | rst                                                                                                          |                6 |             13 |         2.17 |
+|  i_audio/i_clocking/CLK_48         |                                                                                                                                        |                                                                                                              |                9 |             14 |         1.56 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_delay_line/fill[0]_i_1__0_n_0                                                                                                 | rst                                                                                                          |                4 |             16 |         4.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_delay_line/fill[0]_i_1_n_0                                                                                                    | rst                                                                                                          |                4 |             16 |         4.00 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2c/Inst_i3c2/delay[15]_i_1_n_0                                                                   |                                                                                                              |                5 |             16 |         3.20 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                |                                                                                                              |                6 |             22 |         3.67 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                |                                                                                                              |                8 |             22 |         2.75 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                |                                                                                                              |                6 |             22 |         3.67 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/base_en_cntrl                                                                |                                                                                                              |                5 |             22 |         4.40 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_s_data_chan_fifo.i_s_data_chan_fifo/wr_enable                              |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/m_axis_data_tvalid                                                           | chan_r/i_lpf/o_dat[23]_i_1__4_n_0                                                                            |                4 |             24 |         6.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/rfd_int                                                                      |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.g_cntrl_signals[9].i_delay/CNTRL_IN[0]              |                                                                                                              |                6 |             24 |         4.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.g_cntrl_signals[9].i_delay/CNTRL_IN[0]              |                                                                                                              |                4 |             24 |         6.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/v2                                                                                                                              | chan_r/o_dat[23]_i_1__6_n_0                                                                                  |                5 |             24 |         4.80 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.g_cntrl_signals[9].i_delay/CNTRL_IN[0]              |                                                                                                              |                5 |             24 |         4.80 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.g_cntrl_signals[9].i_delay/CNTRL_IN[0]              |                                                                                                              |                4 |             24 |         6.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_s_data_chan_fifo.i_s_data_chan_fifo/wr_enable                              |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_s_data_chan_fifo.i_s_data_chan_fifo/wr_enable                              |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/rfd_int                                                                      |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_delay_line/o_val_i_1__0_n_0                                                                                                   | rst                                                                                                          |               11 |             24 |         2.18 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/v2                                                                                                                              | chan_l/o_dat[23]_i_1__3_n_0                                                                                  |                5 |             24 |         4.80 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/m_axis_data_tvalid                                                           | chan_l/i_lpf/o_dat[23]_i_1__1_n_0                                                                            |                4 |             24 |         6.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/m_axis_data_tvalid                                                           | chan_r/i_hpf/o_dat[23]_i_1__5_n_0                                                                            |                4 |             24 |         6.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/rfd_int                                                                      |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_delay_line/o_val_i_1_n_0                                                                                                      | rst                                                                                                          |               13 |             24 |         1.85 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/m_axis_data_tvalid                                                           | chan_l/i_hpf/o_dat[23]_i_1__2_n_0                                                                            |                4 |             24 |         6.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/rfd_int                                                                      |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_s_data_chan_fifo.i_s_data_chan_fifo/wr_enable                              |                                                                                                              |                3 |             24 |         8.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_latch_op/latch_op                                 |                                                                                                              |                4 |             25 |         6.25 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_lpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_latch_op/latch_op                                 |                                                                                                              |                5 |             25 |         5.00 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_latch_op/latch_op                                 |                                                                                                              |                5 |             26 |         5.20 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_hpf/i_fir/U0/i_synth/g_single_rate.i_single_rate/g_semi_parallel_and_smac.i_latch_op/latch_op                                 |                                                                                                              |                7 |             26 |         3.71 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | btn_d/sel                                                                                                                              | btn_d/clear                                                                                                  |                7 |             27 |         3.86 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | btn_l/sel                                                                                                                              | btn_l/clear                                                                                                  |                7 |             27 |         3.86 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | btn_r/sel                                                                                                                              | btn_r/clear                                                                                                  |                7 |             27 |         3.86 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | btn_u/sel                                                                                                                              | btn_u/clear                                                                                                  |                7 |             27 |         3.86 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/E[0]                                  | chan_l/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/Q[0]        |                8 |             30 |         3.75 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/E[0]                                  | chan_r/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/Q[0]        |                8 |             30 |         3.75 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_r/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/rdp_inst/FSM_sequential_gen_fwft.curr_fwft_state_reg[1] | chan_r/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/Q[0]        |                8 |             30 |         3.75 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/rdp_inst/FSM_sequential_gen_fwft.curr_fwft_state_reg[1] | chan_l/i_delay_line/i_fifo/inst/gen_fifo.xpm_fifo_axis_inst/xpm_fifo_base_inst/xpm_fifo_rst_inst/Q[0]        |                8 |             30 |         3.75 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | i_audio/new_sample_100                                                                                                                 |                                                                                                              |               30 |             48 |         1.60 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/i_delay_line/E[0]                                                                                                               |                                                                                                              |               31 |             48 |         1.55 |
+|  i_audio/i_clocking/o_CLK_100_BUFG | chan_l/E[0]                                                                                                                            |                                                                                                              |               13 |             48 |         3.69 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2s_data_interface/audio_l_out_n_0                                                                |                                                                                                              |               21 |             48 |         2.29 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2s_data_interface/i2s_lr_last_i_1_n_0                                                            |                                                                                                              |               16 |             50 |         3.12 |
+|  i_audio/i_clocking/CLK_48         | i_audio/Inst_adau1761_izedboard/Inst_i2s_data_interface/sr_in[126]_i_1_n_0                                                             |                                                                                                              |               20 |             52 |         2.60 |
+|  i_audio/i_clocking/o_CLK_100_BUFG |                                                                                                                                        |                                                                                                              |              145 |            540 |         3.72 |
++------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+

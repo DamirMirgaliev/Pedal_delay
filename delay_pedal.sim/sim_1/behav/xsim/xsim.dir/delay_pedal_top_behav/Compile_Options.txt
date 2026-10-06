@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "xbip_utils_v3_0_10" -L "axi_utils_v2_0_6" -L "fir_compiler_v7_2_18" -L "axis_infrastructure_v1_1_0" -L "axis_data_fifo_v2_0_8" -L "unisims_ver" -L "unimacro_ver" -L "secureip" -L "xpm" --snapshot "delay_pedal_top_behav" "xil_defaultlib.delay_pedal_top" "xil_defaultlib.glbl" -log "elaborate.log" 

@@ -1,0 +1,6 @@
+verilog xil_defaultlib --include "../../../ipstatic/hdl" \
+"../../../../delay_pedal.gen/sources_1/ip/fifo_delay_axis/sim/fifo_delay_axis.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

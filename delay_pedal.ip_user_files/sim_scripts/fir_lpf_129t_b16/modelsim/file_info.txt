@@ -1,0 +1,9 @@
+xpm_cdc.sv,systemverilog,xpm,../../../../../../Xilinx/Vivado/2022.1/data/ip/xpm/xpm_cdc/hdl/xpm_cdc.sv,
+xpm_fifo.sv,systemverilog,xpm,../../../../../../Xilinx/Vivado/2022.1/data/ip/xpm/xpm_fifo/hdl/xpm_fifo.sv,
+xpm_memory.sv,systemverilog,xpm,../../../../../../Xilinx/Vivado/2022.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv,
+xpm_VCOMP.vhd,vhdl,xpm,../../../../../../Xilinx/Vivado/2022.1/data/ip/xpm/xpm_VCOMP.vhd,
+xbip_utils_v3_0_vh_rfs.vhd,vhdl,xbip_utils_v3_0_10,../../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd,
+axi_utils_v2_0_vh_rfs.vhd,vhdl,axi_utils_v2_0_6,../../../ipstatic/hdl/axi_utils_v2_0_vh_rfs.vhd,
+fir_compiler_v7_2_vh_rfs.vhd,vhdl,fir_compiler_v7_2_18,../../../ipstatic/hdl/fir_compiler_v7_2_vh_rfs.vhd,
+fir_lpf_129t_b16.vhd,vhdl,xil_defaultlib,../../../../delay_pedal.gen/sources_1/ip/fir_lpf_129t_b16/sim/fir_lpf_129t_b16.vhd,
+glbl.v,Verilog,xil_defaultlib,glbl.v
