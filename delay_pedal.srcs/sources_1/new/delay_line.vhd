@@ -15,6 +15,9 @@
 --   * задержка уменьшилась  -> лишние отсчёты вычитываются и отбрасываются (по одному
 --                              лишнему за каждый новый отсчёт).
 -- Поэтому значение с потенциометра нужно сглаживать/ограничивать по скорости.
+--
+-- i_flush (импульс): очищает линию задержки (FIFO и счётчик заполнения). Сброс FIFO
+-- удерживается 16 тактов; новые отсчёты в это время игнорируются.
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -29,6 +32,7 @@ entity delay_line is
   port (
     i_clk   : in  std_logic;
     i_rst   : in  std_logic;                                -- активный уровень '1'
+    i_flush : in  std_logic := '0';                         -- импульс: очистить линию задержки
     i_val   : in  std_logic;                                -- строб нового отсчёта
     i_dat   : in  std_logic_vector(DAT_WIDTH-1 downto 0);   -- знаковый отсчёт
     i_delay : in  std_logic_vector(15 downto 0);            -- задержка в отсчётах
@@ -61,6 +65,8 @@ architecture Behavioral of delay_line is
   signal m_tready    : std_logic;
   signal m_tdata     : std_logic_vector(31 downto 0);
   signal aresetn     : std_logic;
+  signal flush_cnt   : natural range 0 to 15 := 0;            -- удержание сброса при flush
+  signal rst_int     : std_logic;                             -- i_rst или идёт flush
 
   signal busy        : std_logic := '0';                  -- идёт чтение из FIFO
   signal pop_left    : unsigned(1 downto 0) := (others => '0');
@@ -74,7 +80,8 @@ begin
                to_unsigned(MIN_DELAY, 16) when unsigned(i_delay) < MIN_DELAY else
                unsigned(i_delay);
 
-  aresetn   <= not i_rst;
+  rst_int   <= '1' when (i_rst = '1' or flush_cnt /= 0) else '0';
+  aresetn   <= not rst_int;
   m_tready  <= busy;
 
   i_fifo : fifo_delay_axis
@@ -89,11 +96,22 @@ begin
       m_axis_tdata   => m_tdata
     );
 
+  flush_proc : process(i_clk)
+  begin
+    if rising_edge(i_clk) then
+      if i_flush = '1' then
+        flush_cnt <= 15;
+      elsif flush_cnt /= 0 then
+        flush_cnt <= flush_cnt - 1;
+      end if;
+    end if;
+  end process;
+
   main_proc : process(i_clk)
     variable inc, dec : std_logic;
   begin
     if rising_edge(i_clk) then
-      if i_rst = '1' then
+      if rst_int = '1' then
         val_d    <= '0';
         s_tvalid <= '0';
         busy     <= '0';

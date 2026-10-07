@@ -1,1 +1,33 @@
 Time resolution is 1 ps
+Note: ok:   reset active before lock/samples
+Time: 195 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   ready after stable samples
+Time: 14195 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   relay off, effect off (DUT1)
+Time: 14195 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   ZedBoard variant starts effect automatically (DUT2)
+Time: 14195 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   relay engaged at once, sound still muted
+Time: 14265 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   flush pulse issued on enable
+Time: 14265 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   master ramped up to 1.0
+Time: 314265 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   ZedBoard variant toggled off (DUT2)
+Time: 314265 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   relay still on while fading out
+Time: 319285 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   bypass: relay released, master 0, effect off
+Time: 619285 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   ZedBoard variant toggled on (DUT2)
+Time: 619285 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   enabled again
+Time: 919305 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   forced reset: reset active, relay released
+Time: 919425 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   recovered after forced reset, effect off
+Time: 933425 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: ok:   samples lost -> reset
+Time: 939425 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd
+Note: TEST PASSED: fx_ctrl OK
+Time: 939425 ns  Iteration: 1  Process: /tb_fx_ctrl/stim  File: D:/delay_pedal/delay_pedal/delay_pedal.srcs/sim_1/new/tb_fx_ctrl.vhd

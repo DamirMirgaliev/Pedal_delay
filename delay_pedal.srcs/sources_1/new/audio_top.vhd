@@ -1,3 +1,7 @@
+-- audio_top.vhd - кодек ADAU1761 (референсный модуль ZedBoard), изменения для delay_pedal:
+--   * добавлен выход o_locked (захват MMCM) для сброса по включению в fx_ctrl;
+--   * убран атрибут DONT_TOUCH с цепи clk_100_bufg (давал ~100 предупреждений Synth 8-5396).
+-- Остальное без изменений.
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
@@ -24,7 +28,8 @@ entity audio_top is
 
          o_clk_100      : out   std_logic;
          new_sample     : out   STD_LOGIC; -- active for 1 clk cycle if new "line in" sample is tranmitted/received
-         sample_clk_48k : out   std_logic  -- sample clock (new sample at rising edge)
+         sample_clk_48k : out   std_logic; -- sample clock (new sample at rising edge)
+         o_locked       : out   std_logic  -- MMCM locked
          );
 end audio_top;
 
@@ -74,8 +79,8 @@ architecture Behavioral of audio_top is
   signal hphone_l_freeze_100, hphone_r_freeze_100: STD_LOGIC_VECTOR(23 downto 0); -- for CDC 100 -> 48 Mhz freeze registers
   signal hphone_valid     : std_logic; -- internal signal for hphone_l_valid
   signal clk_100_bufg     : std_logic;
+  signal locked_i         : std_logic;
   attribute DONT_TOUCH : string;
-  attribute DONT_TOUCH of clk_100_bufg : signal is "true";
   attribute DONT_TOUCH of new_sample   : signal is "true";
 begin
 
@@ -85,9 +90,10 @@ begin
        o_CLK_100 => clk_100_bufg,
        CLK_48    => clk_48,
        RESET     => '0',
-       LOCKED    => open
+       LOCKED    => locked_i
   );
   o_clk_100 <= clk_100_bufg;
+  o_locked  <= locked_i;
 
   Inst_adau1761_izedboard: adau1761_izedboard PORT MAP(
        clk_48     => clk_48,

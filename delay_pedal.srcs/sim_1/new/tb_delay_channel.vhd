@@ -1,12 +1,15 @@
 ----------------------------------------------------------------------------------
--- tb_delay_channel.vhd - сквозной тест одного канала эффекта (delay_channel)
--- Подаётся одиночный импульс 2^20. Задержка D = 16 отсчётов, dry = 0, LPF = HPF = 1.0.
--- Так как HPF построен как "единица минус LPF", сумма LPF + HPF даёт копию импульса,
--- задержанную на D + 64 отсчёта (64 = задержка линейно-фазового FIR). Остальные
--- отсчёты - небольшие остатки квантования коэффициентов 16 бит.
--- Эталон (массив EXP) посчитан целочисленной моделью (те же .coe, сдвиги 18 и 15).
--- Номер выходного события E = D + 1 + j, j = 0..128 (j = номер коэффициента).
+-- tb_delay_channel.vhd - сквозной тест одного канала (delay_channel)
+-- Задержка эха i_delay = 81 отсчёт (линия задержки получает 81 - 65 = 16),
+-- dry = 0,5 (128), wet = 1,0 (256), LP = HP = 1,0, обратная связь 0,5 (128).
+-- Подаётся одиночный импульс 2^20. Ожидается:
+--   событие 1:   прямой сигнал 0,5 * импульс (524288)
+--   событие 81:  первое эхо ~ импульс (LPF + HPF = копия, задержанная на 81 отсчёт)
+--   событие 162: второе эхо ~ 0,5 * импульс (обратная связь), расстояние = i_delay
+--   далее: малые остатки (квантование коэффициентов) и затухающие повторы.
+-- Эталон EXP (все 330 отсчётов) посчитан побитовой моделью (те же .coe, сдвиги, насыщение).
 -- Нужны IP: fifo_delay_axis, fir_lpf_129t_b16, fir_hpf_129t_b16.
+-- Время симуляции: около 0,55 мс модельного времени (несколько минут реального).
 ----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -16,31 +19,46 @@ entity tb_delay_channel is
 end tb_delay_channel;
 
 architecture sim of tb_delay_channel is
-  constant D            : natural := 16;
   constant A            : integer := 1048576;   -- амплитуда импульса 2^20
-  constant N_EVENTS     : natural := 200;
-  constant CLK_PER_SMPL : natural := 160;
+  constant N_EVENTS     : natural := 330;
+  constant CLK_PER_SMPL : natural := 200;
   constant TOL          : integer := 2;
 
-  type int_arr is array (0 to 128) of integer;
+  type int_arr is array (0 to 329) of integer;
   constant EXP : int_arr := (
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 4, 4, 8, 12, 16, -12,
-    -4, 0, 4, 4, 0, 12, 16, 0,
-    -4, 8, 8, 8, -12, 0, 4, -4,
-    0, 4, 4, -4, -4, 12, 12, -8,
-    12, -8, -4, -4, 0, 0, 12, 12,
-    0, 4, -12, -4, 4, 8, 8, 12,
-    8, -16, 8, 12, 8, 8, 16, 4,
-    1048576, 4, 16, 8, 8, 12, 8, -16,
-    8, 12, 8, 8, 4, -4, -12, 4,
-    0, 12, 12, 0, 0, -4, -4, -8,
-    12, -8, 12, 12, -4, -4, 4, 4,
-    0, -4, 4, 0, -12, 8, 8, 8,
-    -4, 0, 16, 12, 0, 4, 4, 0,
-    -4, -12, 16, 12, 8, 4, 4, 0,
-    0, 0, 0, 0, 0, 0, 0, 0,
-    0
+    524288, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 4, 4, 8, 12,
+    16, -12, -4, 0, 4, 4, 0, 12, 16, 0,
+    -4, 8, 8, 8, -12, 0, 4, -4, 0, 4,
+    4, -4, -4, 12, 12, -8, 12, -8, -5, -5,
+    -1, -1, 11, 11, -1, 3, -13, -5, 3, 7,
+    7, 11, 7, -17, 7, 11, 7, 7, 15, 3,
+    1048575, 3, 15, 7, 7, 11, 7, -17, 7, 11,
+    7, 7, 3, -5, -13, 3, -1, 11, 11, -1,
+    -1, -5, -5, -9, 11, -9, 11, 15, -1, 3,
+    15, 19, -13, -9, 3, 3, -9, 7, 19, 23,
+    -5, -5, 23, 19, 7, -9, 3, 3, -9, -13,
+    19, 15, 3, -1, 15, 11, -9, 11, -9, -6,
+    -6, -2, -2, 10, 10, -2, 2, -14, -6, 2,
+    6, 6, 10, 6, -18, 6, 10, 6, 6, 14,
+    2, 524286, 2, 14, 6, 6, 10, 6, -18, 6,
+    10, 6, 6, 2, -6, -14, 2, -2, 10, 10,
+    -2, -2, -6, -6, -10, 10, -10, 10, 13, -3,
+    0, 11, 14, -11, -9, 2, 1, -11, 6, 15,
+    18, -6, -5, 20, 16, 4, -7, 2, 1, -9,
+    -14, 17, 13, 3, -1, 11, 7, -8, 7, -8,
+    -5, -5, -2, -2, 7, 7, -2, 1, -11, -5,
+    1, 4, 4, 7, 4, -14, 4, 7, 4, 4,
+    10, 1, 262142, 1, 10, 4, 4, 7, 4, -14,
+    4, 7, 4, 4, 1, -5, -11, 1, -2, 7,
+    7, -2, -2, -5, -5, -8, 7, -8, 7, 8,
+    -4, -1, 7, 9, -8, -7, 1, -1, -10, 4,
+    10, 12, -5, -4, 14, 11, 2, -5, 1, -1,
+    -8, -11, 12, 9, 2, -2, 6, 3, -6, 4,
+    -6, -4, -5, -2, -2, 3, 3, -2, -1, -9,
+    -4, 0, 2, 2, 3, 2, -10, 2, 3, 2,
+    2, 6, 0, 131070, 0, 6, 2, 2, 3, 2
   );
 
   signal clk      : std_logic := '0';
@@ -67,13 +85,15 @@ begin
     port map (
       i_clk      => clk,
       i_rst      => rst,
+      i_flush    => '0',
       i_val      => val,
       i_dat      => dat,
-      i_enable   => '1',
-      i_delay    => std_logic_vector(to_unsigned(D, 16)),
-      i_gain_dry => std_logic_vector(to_unsigned(0, 9)),
+      i_delay    => std_logic_vector(to_unsigned(81, 16)),
+      i_gain_dry => std_logic_vector(to_unsigned(128, 9)),
+      i_gain_wet => std_logic_vector(to_unsigned(256, 9)),
       i_gain_lp  => std_logic_vector(to_unsigned(256, 9)),
       i_gain_hp  => std_logic_vector(to_unsigned(256, 9)),
+      i_gain_fb  => std_logic_vector(to_unsigned(128, 9)),
       o_val      => o_val,
       o_dat      => o_dat);
 
@@ -101,7 +121,7 @@ begin
 
     report "outputs checked: " & integer'image(n_out) severity note;
     if errors = 0 and n_out = N_EVENTS then
-      report "TEST PASSED: delay_channel (delay + LPF + HPF + mix) OK" severity note;
+      report "TEST PASSED: delay_channel (delay + LPF + HPF + mix + feedback) OK" severity note;
     else
       report "TEST FAILED: " & integer'image(errors) & " mismatches, outputs = " &
              integer'image(n_out) severity error;
@@ -111,15 +131,15 @@ begin
   end process;
 
   check : process(clk)
-    variable e   : natural;
+    variable e     : natural;
     variable exp_v : integer;
   begin
     if rising_edge(clk) then
       if o_val = '1' then
         e := n_out + 1;
         n_out <= e;
-        if e >= D + 1 and e <= D + 1 + 128 then
-          exp_v := EXP(e - D - 1);
+        if e <= N_EVENTS then
+          exp_v := EXP(e - 1);
         else
           exp_v := 0;
         end if;
